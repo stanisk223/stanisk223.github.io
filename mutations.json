@@ -1,0 +1,56 @@
+﻿[
+    {
+        "map":  "Ancient Vault",
+        "desc":  "water map",
+        "cmd":  "waterlevel 650",
+        "pic":  ""
+    },
+    {
+        "map":  "Ascendancy",
+        "desc":  "2 naval lanes mid map",
+        "cmd":  "waterlevel 400, extremebelow 200 1.5, minheight 240, extremebelow 400 3.0, floor 300, extremeabove 2000 0.5",
+        "pic":  ""
+    },
+    {
+        "map":  "Carrot Mountains",
+        "desc":  "naval battle",
+        "cmd":  "extreme 2.5, floor 1280, extremeabove 2000 0.3, waterlevel 1337",
+        "pic":  ""
+    },
+    {
+        "map":  "Flats and Forests",
+        "desc":  "becomes more moutains and trees",
+        "cmd":  "extremeabove 200 4, extremeabove 250 1.5, extremeabove 300 1.8",
+        "pic":  ""
+    },
+    {
+        "map":  "Glacial Gap",
+        "desc":  "Inverted, a land map with pits instead of mountains.",
+        "cmd":  "invertmap",
+        "pic":  ""
+    },
+    {
+        "map":  "Glacial Gap",
+        "desc":  "Land mid with top and bottom naval lanes that have been flattened so amphib units can traverse",
+        "cmd":  "waterlevel -1000, extremebelow 2000 3, minheight 1340, extremebelow 4000 2.2, floor 1900, extremeabove 200 0.17, waterlevel 560",
+        "pic":  ""
+    },
+    {
+        "map":  "Koom Valley",
+        "desc":  "central sea. players either side",
+        "cmd":  "extremebelow 680 0.5, waterlevel 660",
+        "pic":  ""
+    },
+    {
+        "map":  "Metal Plate",
+        "desc":  "water map",
+        "cmd":  "waterlevel 600 ",
+        "pic":  ""
+    },
+    {
+        "map":  "Rustcrown Canyon",
+        "desc":  "becomes three naval lanes",
+        "cmd":  "extremeabove 390 0.2, extremeabove 160 -1.2",
+        "pic":  ""
+    }
+]

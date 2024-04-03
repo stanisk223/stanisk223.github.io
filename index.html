@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<!-- Bootstrap Style sheet and javascripts to make it work !-->
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+		<!-- Optional JavaScript -->
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+		<title>BAR Map Mutations</title>
+	</head>
+<body>
+<h1>Bar Map Mutations</h1>
+Use Ctrl+F or your browsers Find utility to search by map name<br>
+ <br>
+The [Skirmish] or [Lobby] buttons will copy the command to the clipboard.<br>
+ <br>
+ <br>
+If you want to develop some of these yourself then here is a link to the github update that added the terraforming commands to the game:<br>
+<a href='https://github.com/beyond-all-reason/Beyond-All-Reason/pull/2330'>Additional Debug command Terraforming Options #2330 by robertthepie</a>
+<br> 
+<div id="links" style="text-indent: -1em; padding-left: 2em;"></div>
+<script type="text/javascript">
+
+function copyBtn(str) {
+	navigator.clipboard.writeText(str);
+}
+
+async function getData(url) {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error("Network response was not OK");
+    }
+    const data = await response.json();
+	console.log(data);
+
+	var lastmap = ""
+	$.each(data, function(i, item) {
+		map = item.map
+		if ( i==0 || lastmap != map ) {
+			// MAP NAME as a header
+			var br = document.createElement("br");	 
+			$("#links").append(br);	
+			var h = document.createElement("h4");		
+			h.innerHTML = map;
+			$("#links").append(h);		
+			lastmap = map;
+			//
+		}
+
+		//var url = url1 + item.url + url2
+		//a.href = url;
+		//a.innerHTML = item.name;
+
+		// description for this mutation
+		var p = document.createElement("p");
+		p.innerHTML = item.desc
+		$("#links").append(p);		
+
+		var lobbycmd = "!bset debugcommands " + item.cmd
+	
+		// command in a text area (by default without the !bset debugs)
+		var txt = document.createElement("textarea");
+		txt.cols = 100;
+		txt.rows = 1;
+		txt.readOnly = true;
+		txt.value = item.cmd
+		$("#links").append(txt);		
+	
+		// skirmish cpy button
+		var btn = document.createElement("button");		
+		btn.innerHTML ='Skirmish';
+		btn.title = item.cmd;		
+		btn.onclick = function() {
+			copyBtn(item.cmd);
+			return false;
+		}
+		$("#links").append(btn);	
+
+		// mp lobby cpy button
+		var btn = document.createElement("button");		
+		btn.innerHTML ='Lobby';
+		btn.title = lobbycmd;
+		btn.onclick = function() {
+			copyBtn(lobbycmd);
+			return false;
+		}
+		$("#links").append(btn);		
+		
+		var br = document.createElement("br");	 
+		$("#links").append(br);
+	});
+
+
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
+
+var url = "./mutations.json";
+getData(url);
+ 	
+</script>
+<br>
+
+&nbsp;<br>
+&nbsp;<br>
+</body>
+
+</html>
